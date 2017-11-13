@@ -2,5 +2,11 @@
   "name": "places",
   "app_id": "",
   "type": "ionic-angular",
-  "integrations": {}
+  "integrations": {},
+  "proxies": [
+    {
+      "path": "/maps",
+      "proxyUrl": "https://maps.googleapis.com/maps"
+    }
+  ]
 }
