@@ -14,16 +14,29 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class PlacesProvider {
 
+  /**
+   * Google developer authentication key
+   * @type {string}
+   */
   key: string = 'AIzaSyCXQ_oV3qikhbY2qLhE9X75TbI5VKK1coE';
-  format: string = 'json';
 
+  format: string = 'json';
   lat: string = '36.303025';
   lng: string = '-75.808600';
   radius: string = '10000';
   type: string = '';
 
+  /**
+   * Constructor
+   * @param {HttpClient} http
+   */
   constructor(public http: HttpClient) {}
 
+  /**
+   * Retrieves page of places from Google places service
+   * @param next_page_token
+   * @returns {Observable<any>}
+   */
   getPlaces(next_page_token): Observable<any> {
 
     // generate url with parameters:

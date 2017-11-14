@@ -10,10 +10,23 @@ import {PlacesProvider} from '../../providers/places/places';
 })
 export class HomePage {
 
+  /**
+   * The list of places retrieved for display
+   * @type {Array}
+   */
   places = [];
 
+  /**
+   * Google places token for next page of results
+   * @type {any}
+   */
   next_page_token = undefined;
 
+  /**
+   * Constructor
+   * @param {NavController} navCtrl
+   * @param {PlacesProvider} provider
+   */
   constructor(public navCtrl: NavController, private provider: PlacesProvider) {}
 
   /**
@@ -31,7 +44,7 @@ export class HomePage {
     this.provider.getPlaces(this.next_page_token)
       .subscribe(response => {
         console.log('response', response);
-        this.places = response.results.sort((a, b) => {return a.name - b.name});
+        this.places = response.results;
         this.next_page_token = response.next_page_token;
       });
 
