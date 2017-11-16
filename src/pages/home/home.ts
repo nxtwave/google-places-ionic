@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Observable } from 'rxjs/Observable';
 
 import {PlacesProvider} from '../../providers/places/places';
 
+import {PlacePage} from '../place/place';
+
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home-cards.html'
 })
 export class HomePage {
 
@@ -41,13 +42,25 @@ export class HomePage {
    */
   getPlaces() {
     console.log('get-places');
-    this.provider.getPlaces(this.next_page_token)
+    this.provider.getPlaces('', this.next_page_token)
       .subscribe(response => {
         console.log('response', response);
         this.places = response.results;
         this.next_page_token = response.next_page_token;
       });
-
   }
+
+  /**
+   *
+   * @param event
+   * @param placeid
+   */
+  itemTapped(event, placeid) {
+    console.log('item-tapped');
+    this.navCtrl.push(PlacePage, {
+      placeid: placeid
+    });
+  }
+
 
 }

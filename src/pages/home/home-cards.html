@@ -1,15 +1,21 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Google Places
-    </ion-title>
+    <ion-title>Google Places</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
+
+    <ion-list-header>Places to see</ion-list-header>
+
     <button ion-item *ngFor="let place of places" (click)="itemTapped($event, place.place_id)">
-      {{place.name}}
+        <ion-avatar item-left>
+          <img [src]="place.icon">
+        </ion-avatar>
+        <h2>{{place.name}}</h2>
+        <h3>{{place.vicinity}}</h3>
+        <p>{{place.types.slice(0,1)}}</p>
     </button>
   </ion-list>
 
